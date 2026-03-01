@@ -1,0 +1,203 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+==========================================================================
+【AI HANDOVER NOTE】
+1. DESIGN PHILOSOPHY:
+   - The TRP-Workstation design system, 'Roseburg Organic High-Performance,' blends the earthy, established tones of the Pacific Northwest (Greens and Beiges) with the sharp, high-efficiency requirements of a modern marketing agency command center.
+   - Visual Style: 'Modular Physicality.' This approach uses the Bento-box surface methodology to contain complex AI and CRM data. Surfaces use subtle ambient occlusion (shadows) and 'rim-light' borders to create depth without relying on heavy gradients. The Background Beige (#F8F4E6) acts as a canvas for the Primary Green (#1A5E3F) brand elements.
+   - Purpose: This system transitions the agency from a standard utility to a premium workspace that feels both authoritative (Primary Green) and energetic (Accent Orange).
+
+2. TYPOGRAPHY:
+   - Sans (Plus Jakarta Sans): Chosen for its modern, geometric clarity that maintains warmth. It excels in dashboard environments where hierarchical legibility (headings vs. data points) is paramount.
+   - Mono (JetBrains Mono): Specifically for AI outputs, automation scripts, and technical metrics. It adds a layer of 'engineering precision' to the agency's data-driven workflows.
+
+3. COLOR SYSTEM:
+   - Brand Core: The Primary Green (oklch 0.38 0.08 165) provides a professional foundation. Accent Orange (oklch 0.60 0.18 45) is used sparingly for CTAs and critical status indicators (Active/Open).
+   - Mapping: --primary uses the agency green; --accent uses the orange to draw focus to 'workspaces' and 'actions'. --ring is set to the accent orange to provide high-contrast focus states.
+   - Semantic Logic: Success is tied to the primary green, while Destructive uses a warm red-clay tone (oklch 0.55 0.22 25) to stay within the organic palette.
+
+4. USAGE GUIDE:
+   - Layout: Designed for a 'Sidebar-Fixed, Content-Fluid' dashboard. The sidebar is treated as a 'Dark Green' anchor (oklch 0.30 0.06 165) to provide a strong visual frame.
+   - Special Effects: Use 'backdrop-blur-md' for popovers and modals to simulate glass layering. Use 'ring-1 ring-border/50' for card outlines to maintain a physical, tactile feel.
+   - Components: Charts should prioritize the Green-Orange-Gold sequence (Chart 1-3) to maintain brand cohesion in reports.
+==========================================================================
+*/
+
+:root {
+  /* Typography */
+  --font-sans: Plus Jakarta Sans, system-ui, sans-serif;
+  --font-mono: JetBrains+Mono, monospace;
+  
+  /* Radius */
+  --radius: 0.75rem;
+
+  /* Core UI Tokens */
+  --background: oklch(0.97 0.01 85);
+  --foreground: oklch(0.25 0.02 165);
+  --card: oklch(0.99 0.005 85);
+  --card-foreground: oklch(0.25 0.02 165);
+  --popover: oklch(0.99 0.005 85);
+  --popover-foreground: oklch(0.25 0.02 165);
+  --primary: oklch(0.38 0.08 165);
+  --primary-foreground: oklch(0.98 0.01 85);
+  --secondary: oklch(0.92 0.02 85);
+  --secondary-foreground: oklch(0.35 0.06 165);
+  --muted: oklch(0.92 0.01 85);
+  --muted-foreground: oklch(0.45 0.04 165);
+  --accent: oklch(0.60 0.18 45);
+  --accent-foreground: oklch(0.99 0.01 85);
+  --destructive: oklch(0.55 0.22 25);
+  --destructive-foreground: oklch(0.98 0.01 85);
+  --border: oklch(0.88 0.02 85);
+  --input: oklch(0.88 0.02 85);
+  --ring: oklch(0.60 0.18 45);
+  
+  /* Chart Tokens */
+  --chart-1: oklch(0.38 0.08 165);
+  --chart-2: oklch(0.60 0.18 45);
+  --chart-3: oklch(0.48 0.11 65);
+  --chart-4: oklch(0.42 0.06 185);
+  --chart-5: oklch(0.55 0.09 55);
+  
+  /* Sidebar Tokens */
+  --sidebar: oklch(0.30 0.06 165);
+  --sidebar-foreground: oklch(0.98 0.01 85);
+  --sidebar-primary: oklch(0.60 0.18 45);
+  --sidebar-primary-foreground: oklch(0.99 0.01 85);
+  --sidebar-accent: oklch(0.35 0.07 165);
+  --sidebar-accent-foreground: oklch(0.95 0.01 85);
+  --sidebar-border: oklch(0.25 0.05 165);
+  --sidebar-ring: oklch(0.60 0.18 45);
+}
+
+.dark {
+  --background: oklch(0.18 0.04 165);
+  --foreground: oklch(0.92 0.02 85);
+  --card: oklch(0.22 0.04 165);
+  --card-foreground: oklch(0.95 0.02 85);
+  --popover: oklch(0.22 0.04 165);
+  --popover-foreground: oklch(0.95 0.02 85);
+  --primary: oklch(0.55 0.12 165);
+  --primary-foreground: oklch(0.12 0.03 165);
+  --secondary: oklch(0.28 0.05 165);
+  --secondary-foreground: oklch(0.92 0.02 85);
+  --muted: oklch(0.28 0.04 165);
+  --muted-foreground: oklch(0.75 0.02 85);
+  --accent: oklch(0.70 0.16 45);
+  --accent-foreground: oklch(0.15 0.05 45);
+  --destructive: oklch(0.62 0.20 25);
+  --destructive-foreground: oklch(0.98 0.01 85);
+  --border: oklch(0.32 0.04 165);
+  --input: oklch(0.32 0.04 165);
+  --ring: oklch(0.70 0.16 45);
+  
+  /* Chart Tokens */
+  --chart-1: oklch(0.55 0.12 165);
+  --chart-2: oklch(0.70 0.16 45);
+  --chart-3: oklch(0.62 0.14 65);
+  --chart-4: oklch(0.58 0.10 185);
+  --chart-5: oklch(0.68 0.12 55);
+  
+  /* Sidebar Tokens */
+  --sidebar: oklch(0.14 0.04 165);
+  --sidebar-foreground: oklch(0.92 0.02 85);
+  --sidebar-primary: oklch(0.55 0.12 165);
+  --sidebar-primary-foreground: oklch(0.12 0.03 165);
+  --sidebar-accent: oklch(0.22 0.05 165);
+  --sidebar-accent-foreground: oklch(0.95 0.02 85);
+  --sidebar-border: oklch(0.22 0.04 165);
+  --sidebar-ring: oklch(0.55 0.12 165);
+}
+
+@theme inline {
+  /* Shadcn Core Mapping */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Charts Mapping */
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* Sidebar Mapping */
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Typography */
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+
+  /* Radius */
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    @apply scroll-smooth antialiased;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans min-h-screen;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+
+  code, pre {
+    @apply font-mono;
+  }
+
+  ::selection {
+    @apply bg-primary/20 text-primary;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/20 rounded-full hover:bg-muted-foreground/40;
+  }
+}

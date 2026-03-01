@@ -1,0 +1,14 @@
+{
+  "name": "trp-facebook-proxy",
+  "version": "0.1.0",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "node-fetch": "^3.4.1",
+    "cors": "^2.8.5"
+  }
+}

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="100%" height="100%" rx="12" fill="#071014" />
+  <!-- Pine tree centered -->
+  <g transform="translate(8,6)">
+    <!-- lower layer -->
+    <polygon points="24,4 4,28 44,28" fill="#155e2a" />
+    <!-- middle layer -->
+    <polygon points="24,0 8,20 40,20" fill="#1b7a36" />
+    <!-- top layer -->
+    <polygon points="24,0 15,10 33,10" fill="#48bb78" transform="translate(0,-6)" />
+    <!-- trunk -->
+    <rect x="20" y="28" width="8" height="10" rx="1.5" fill="#7a4b2a" />
+  </g>
+</svg>
