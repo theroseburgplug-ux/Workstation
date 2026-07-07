@@ -61,7 +61,7 @@ const AppContent = () => {
         <Route path={ROUTE_PATHS.AI_ASSISTANT} element={<AIAssistant />} />
         <Route path={ROUTE_PATHS.FINANCES} element={<Finances />} />
         <Route path={ROUTE_PATHS.CLIENTS} element={<Clients />} />
-          <Route path="/clients/:id" element={<ClientWorkspace />} />
+        <Route path="/clients/:id" element={<ClientWorkspace />} />
         <Route path={ROUTE_PATHS.TASKS} element={<Tasks />} />
         <Route path={ROUTE_PATHS.CALENDAR} element={<CalendarPage />} />
         <Route path={ROUTE_PATHS.CONTENT} element={<Content />} />
