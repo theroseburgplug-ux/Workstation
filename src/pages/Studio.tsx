@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   Calendar,
@@ -151,6 +152,13 @@ const visibilityLabels: Record<CreativeObjectVisibility, string> = {
   'public-link': 'Public Link',
 };
 
+function objectHref(object: CreativeObject) {
+  if (object.type === 'doc') return `/studio/docs/${object.id}`;
+  if (object.type === 'meeting') return `/studio/meetings/${object.id}`;
+  if (object.type === 'call') return `/studio/calls/${object.id}`;
+  return '/studio';
+}
+
 function CreativeObjectCard({ object }: { object: CreativeObject }) {
   const meta = typeMeta[object.type];
   const Icon = meta.icon;
@@ -209,6 +217,9 @@ function CreativeObjectCard({ object }: { object: CreativeObject }) {
               AI Ready
             </Badge>
           )}
+          <Button asChild size="sm" variant="outline" className="ml-auto">
+            <Link to={objectHref(object)}>Open</Link>
+          </Button>
         </div>
       </CardContent>
     </Card>
@@ -274,21 +285,18 @@ export default function Studio() {
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
-            <Button className="shadow-lg shadow-primary/20">
-              <FileText className="mr-2 h-4 w-4" />
-              New Doc
+            <Button asChild className="shadow-lg shadow-primary/20">
+              <Link to="/studio/docs/new"><FileText className="mr-2 h-4 w-4" />New Doc</Link>
             </Button>
             <Button variant="outline">
               <Table2 className="mr-2 h-4 w-4" />
               New Sheet
             </Button>
-            <Button className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-lg shadow-accent/20">
-              <Video className="mr-2 h-4 w-4" />
-              Start Plug Call
+            <Button asChild className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-lg shadow-accent/20">
+              <Link to="/studio/calls/new"><Video className="mr-2 h-4 w-4" />Start Plug Call</Link>
             </Button>
-            <Button variant="outline">
-              <Calendar className="mr-2 h-4 w-4" />
-              Schedule Meeting
+            <Button asChild variant="outline">
+              <Link to="/studio/meetings/new"><Calendar className="mr-2 h-4 w-4" />Schedule Meeting</Link>
             </Button>
           </div>
         </div>
@@ -385,8 +393,8 @@ export default function Studio() {
                   </CardHeader>
                   <CardContent className="grid grid-cols-2 gap-2">
                     {docTemplates.map((template) => (
-                      <Button key={template} variant="outline" className="justify-start">
-                        {template}
+                      <Button key={template} asChild variant="outline" className="justify-start">
+                        <Link to="/studio/docs/new">{template}</Link>
                       </Button>
                     ))}
                   </CardContent>
@@ -423,13 +431,11 @@ export default function Studio() {
                   <CardDescription>Make video calling visible as a first-class object.</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">
-                    <Video className="mr-2 h-4 w-4" />
-                    Start Instant Call
+                  <Button asChild className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">
+                    <Link to="/studio/calls/new"><Video className="mr-2 h-4 w-4" />Start Instant Call</Link>
                   </Button>
-                  <Button variant="outline" className="w-full">
-                    <Calendar className="mr-2 h-4 w-4" />
-                    Schedule for Later
+                  <Button asChild variant="outline" className="w-full">
+                    <Link to="/studio/meetings/new"><Calendar className="mr-2 h-4 w-4" />Schedule for Later</Link>
                   </Button>
                   <div className="rounded-lg border border-border/50 bg-muted/30 p-3 text-sm text-muted-foreground">
                     Calls should save a meeting record, transcript, AI summary, action items, and client timeline entry.
@@ -445,9 +451,8 @@ export default function Studio() {
                   {meetingActions.map((action) => {
                     const Icon = action.icon;
                     return (
-                      <Button key={action.label} variant="ghost" className="w-full justify-start">
-                        <Icon className="mr-2 h-4 w-4" />
-                        {action.label}
+                      <Button key={action.label} asChild variant="ghost" className="w-full justify-start">
+                        <Link to="/studio/meetings/new"><Icon className="mr-2 h-4 w-4" />{action.label}</Link>
                       </Button>
                     );
                   })}
