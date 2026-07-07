@@ -7,6 +7,7 @@ import { HashRouter, Routes, Route, useLocation, useNavigate } from "react-route
 import { ROUTE_PATHS, TabId } from "@/lib/index";
 import { Layout } from "@/components/Layout";
 import Dashboard from "@/pages/Dashboard";
+import Studio from "@/pages/Studio";
 import AIAssistant from "@/pages/AIAssistant";
 import Clients from "@/pages/Clients";
 import Tasks from "@/pages/Tasks";
@@ -46,6 +47,7 @@ const AppContent = () => {
     <Layout activeTab={activeTab} onTabChange={handleTabChange}>
       <Routes>
         <Route path={ROUTE_PATHS.DASHBOARD} element={<Dashboard />} />
+        <Route path={ROUTE_PATHS.STUDIO} element={<Studio />} />
         <Route path={ROUTE_PATHS.AI_ASSISTANT} element={<AIAssistant />} />
         <Route path={ROUTE_PATHS.FINANCES} element={<Finances />} />
         <Route path={ROUTE_PATHS.CLIENTS} element={<Clients />} />
