@@ -19,7 +19,8 @@ import {
   Bell,
   Menu,
   X,
-  ChevronRight
+  ChevronRight,
+  Clapperboard
 } from 'lucide-react';
 import { ROUTE_PATHS, type TabId } from '@/lib/index';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
@@ -45,6 +46,7 @@ interface LayoutProps {
 
 const NAV_ITEMS = [
   { id: 'DASHBOARD' as TabId, label: 'Dashboard', icon: LayoutDashboard },
+  { id: 'STUDIO' as TabId, label: 'Creative Studio', icon: Clapperboard },
   { id: 'AI_ASSISTANT' as TabId, label: 'AI Assistant', icon: Bot },
   { id: 'CLIENTS' as TabId, label: 'Clients', icon: Users },
   { id: 'TASKS' as TabId, label: 'Tasks', icon: CheckSquare },
