@@ -1,5 +1,6 @@
 export const ROUTE_PATHS = {
   DASHBOARD: '/',
+  STUDIO: '/studio',
   AI_ASSISTANT: '/ai',
   CLIENTS: '/clients',
   FINANCES: '/finances',
@@ -132,6 +133,28 @@ export interface ContentItem {
   clientName: string;
   description?: string;
   thumbnail?: string;
+}
+
+export type CreativeObjectType = 'doc' | 'sheet' | 'meeting' | 'call' | 'whiteboard' | 'form' | 'transcript';
+export type CreativeObjectStatus = 'draft' | 'ready-for-review' | 'approved' | 'changes-requested' | 'archived';
+export type CreativeObjectVisibility = 'private' | 'internal' | 'project-team' | 'client-visible' | 'client-editable' | 'public-link';
+
+export interface CreativeObject {
+  id: string;
+  type: CreativeObjectType;
+  title: string;
+  description?: string;
+  clientName?: string;
+  projectName?: string;
+  workspaceName?: string;
+  owner: string;
+  status: CreativeObjectStatus;
+  visibility: CreativeObjectVisibility;
+  updatedAt: string;
+  commentCount?: number;
+  aiSummaryReady?: boolean;
+  approvalStatus?: CreativeObjectStatus;
+  relatedCount?: number;
 }
 
 export interface VoiceRecording {

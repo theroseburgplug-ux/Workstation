@@ -7,6 +7,10 @@ import { HashRouter, Routes, Route, useLocation, useNavigate } from "react-route
 import { ROUTE_PATHS, TabId } from "@/lib/index";
 import { Layout } from "@/components/Layout";
 import Dashboard from "@/pages/Dashboard";
+import Studio from "@/pages/Studio";
+import StudioDoc from "@/pages/StudioDoc";
+import MeetingHub from "@/pages/MeetingHub";
+import PlugCall from "@/pages/PlugCall";
 import AIAssistant from "@/pages/AIAssistant";
 import Clients from "@/pages/Clients";
 import Tasks from "@/pages/Tasks";
@@ -34,9 +38,13 @@ const AppContent = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const activeTab = (Object.keys(ROUTE_PATHS).find(
-    (key) => ROUTE_PATHS[key as TabId] === location.pathname
-  ) || "DASHBOARD") as TabId;
+  const activeTab = (() => {
+    if (location.pathname.startsWith('/studio')) return 'STUDIO' as TabId;
+    if (location.pathname.startsWith('/clients')) return 'CLIENTS' as TabId;
+    return (Object.keys(ROUTE_PATHS).find(
+      (key) => ROUTE_PATHS[key as TabId] === location.pathname
+    ) || "DASHBOARD") as TabId;
+  })();
 
   const handleTabChange = (tabId: TabId) => {
     navigate(ROUTE_PATHS[tabId]);
@@ -46,10 +54,14 @@ const AppContent = () => {
     <Layout activeTab={activeTab} onTabChange={handleTabChange}>
       <Routes>
         <Route path={ROUTE_PATHS.DASHBOARD} element={<Dashboard />} />
+        <Route path={ROUTE_PATHS.STUDIO} element={<Studio />} />
+        <Route path="/studio/docs/:id" element={<StudioDoc />} />
+        <Route path="/studio/meetings/:id" element={<MeetingHub />} />
+        <Route path="/studio/calls/:id" element={<PlugCall />} />
         <Route path={ROUTE_PATHS.AI_ASSISTANT} element={<AIAssistant />} />
         <Route path={ROUTE_PATHS.FINANCES} element={<Finances />} />
         <Route path={ROUTE_PATHS.CLIENTS} element={<Clients />} />
-          <Route path="/clients/:id" element={<ClientWorkspace />} />
+        <Route path="/clients/:id" element={<ClientWorkspace />} />
         <Route path={ROUTE_PATHS.TASKS} element={<Tasks />} />
         <Route path={ROUTE_PATHS.CALENDAR} element={<CalendarPage />} />
         <Route path={ROUTE_PATHS.CONTENT} element={<Content />} />
